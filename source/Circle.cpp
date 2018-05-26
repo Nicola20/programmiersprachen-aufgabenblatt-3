@@ -79,13 +79,47 @@ bool Circle::is_inside(Vec2 const& v){
 
 }
 
-/*Abgabe 3 Erweiterung*/
+/*Aufgabe 3.4 Erweiterung*/
 
-    Circle::Circle (float r, Vec2 const& c, Color const& color, string name):
+    Circle::Circle (float r, Vec2 const& c, Color const& color, std::string name):
        radius_{r},
        center_{c},
        color_{color},
        name_{name}
        {}
 
+       std::string Circle::getName() const {
+           return this -> name_;
+       }
 
+       void Circle::setColor(Color const& c) {
+            this -> color_ = c;
+
+       }
+
+
+/*Aufgabe 3.6 Erweiterung*/
+
+   bool Circle::operator< (Circle const& c) {  //Frage: wie mache ich das hier, dass 2 konkrete kreise miteinander verglichen werden?
+       if (radius_ < c.radius_) {
+           return true;
+       } else {
+           return false;
+       }
+   }
+
+      bool Circle::operator> (Circle const& c) {  //Frage: wie mache ich das hier, dass 2 konkrete kreise miteinander verglichen werden?
+       if (radius_ > c.radius_) {
+           return true;
+       } else {
+           return false;
+       }
+   }
+
+      bool Circle::operator== (Circle const& c) {  //Frage: wie mache ich das hier, dass 2 konkrete kreise miteinander verglichen werden?
+       if (radius_ == c.radius_) {
+           return true;
+       } else {
+           return false;
+       }
+   }

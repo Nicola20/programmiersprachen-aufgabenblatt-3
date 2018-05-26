@@ -10,10 +10,14 @@
 
 int main() {
 
-        std::list <unsigned int> l1 (100);           //int kann nicht neg. werden
+    std::list <unsigned int> l1 (100);           //int kann nicht neg. werden
     for (auto& l : l1) {
-		  l = std::rand() % 101;                       //Fügt von 0-100 random zahlen ein
+		  l = std::rand() % 101;                       //Fügt von 0-100 random positive zahlen ein
     }
+
+    /* Aufgabe 3.10 */
+    std::vector<unsigned int > v1 (l1.size());               
+    std::copy(std::begin(l1), std::end(l1), std::begin(v1));  //Kopieren von list l1 in vector v1
 
 
     std::set <unsigned int> s1;

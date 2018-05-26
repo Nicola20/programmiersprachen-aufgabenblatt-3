@@ -1,12 +1,15 @@
 #include "window.hpp"
 #include "Circle.hpp"
-#include "Rectangle.hpp"
-#include "Vec2.hpp"
+//#include "Rectangle.hpp"
+//#include "Vec2.hpp"
 
 #include <GLFW/glfw3.h>
 #include <utility>
 #include <cmath>
+#include <set>
+#include <iostream>
 #include <vector>
+#include <string>
 
 
 
@@ -14,14 +17,19 @@ int main(int argc, char* argv[])
 {
   Window win{std::make_pair(800,800)};
 
+    std::cout<<"Please enter a name of the circle you are searching for. \n";
+    string input;
+    std::cin >> input;
+
   while (!win.should_close()) {
+
     if (win.get_key(GLFW_KEY_ESCAPE) == GLFW_PRESS) {
       win.close();
     }
 
     bool left_pressed = win.get_mouse_button(GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS;
     
-    
+  
     auto t = win.get_time();
 
     float x1{400 + 380 * std::sin(t)};
@@ -33,8 +41,7 @@ int main(int argc, char* argv[])
     float x3{400 + 380 * std::sin(t-10.f)};
     float y3{400 + 380 * std::cos(t-10.f)};
 
-    win.draw_point(x1, y1,
-        1.0f, 0.0f, 0.0f);
+    win.draw_point(x1, y1, 1.0f, 0.0f, 0.0f);
     win.draw_point(x2, y2, 0.0f, 1.0f, 0.0f);
     win.draw_point(x3, y3, 0.0f, 0.0f, 1.0f); 
 
@@ -45,48 +52,45 @@ int main(int argc, char* argv[])
           1.0,0.0,0.0);
     }
 
-    Circle c1{200.0f,Vec2{300.0f,100.0f}, Color{0.0f}};
-    Circle c2{100.0f,Vec2{250.0f,150.0f}, Color{0.0f}};
+
+    Circle c1{200.0f,Vec2{300.0f,100.0f}, Color{0.0f}, "karl"};
+    Circle c2{100.0f,Vec2{250.0f,150.0f}, Color{0.0f}, "judith"};
     /*
     Rectangle r1{Vec2{200.0f,100.0f},Vec2{300.6f, 600.1f}, Color{0.0f}};
     Rectangle r2{Vec2{100.0f, 50.0f},Vec2{250.0f,150.0f}, Color{0.0f}};
     */
+    
     c1.draw(win);
-    c2.draw(win, Color{0.0f, 1.0f, 0.0f});
-    /*
-    r1.draw(win);
-    r2.draw(win, Color{1.0f, 0.0f, 0.0f});
-     */
+    c2.draw(win);
+    
 
-   std::vector<Circle> vc;
-   //std::vector<Rectangle> vr;
-
-   vc.push_back(c1);
-   vc.push_back(c2);
-  /*
-   vr.push_back(r1);
-   vr.push_back(r2);
-  
-    Vec2 n {(float)win.mouse_position().first,(float)win.mouse_position().second}; 
-
-    Color clr{0.0f,0.0f,1.0f};
+    //std::set<Circle> sc;
    
-    for(int i = 0; i < vr.size(); ++i){       //Rectanglealle Elemente im Vector durchgehen
-      if(vr[i].is_inside(n) == true){
-        vr[i].draw(win,clr);
+    //std::vector<Rectangle> vr;
+
+    //sc.insert(c1);
+    //sc.insert(c2);
+
+   std::vector<Circle> vec;
+   vec.push_back(c1);
+   vec.push_back(c2);
+
+   //std::copy(std::begin(sc), std::end(sc), std::begin(vec));
+
+    /*Ergänzungen zu Aufgabe 3.4*/
+    //auto s = win.get_time();
+    
+
+    Color col{1.0f, 0.0f, 0.0f};
+
+    for (int i; i<vec.size(); ++i) {  
+      if(vec[i].getName() == input) {
+          auto s = win.get_time();
+          while (s < 11) {
+           // vec[i].setColor(col);        
+          }
       }
     }
-
-    for(int i = 0; i < vc.size(); ++i){        //Circle
-      if(vc[i].is_inside(n) == true){
-        vc[i].draw(win,clr);
-      }
-} */
-
-
-/*Ergänzungen zu Aufgabe 3.4*/
- std::cout<<
-
 
 
 

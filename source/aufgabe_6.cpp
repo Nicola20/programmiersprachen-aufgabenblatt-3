@@ -7,7 +7,7 @@
 #include <iostream>
 
 
-TEST_CASE ("test_if_sorted","[sorting]")
+TEST_CASE ("sorted_circles","[sort]")
  {
    std::vector<Circle> sorted_circles;
 
