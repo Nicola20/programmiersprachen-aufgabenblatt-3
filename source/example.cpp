@@ -21,6 +21,15 @@ int main(int argc, char* argv[])
     string input;
     std::cin >> input;
 
+    double first_timestamp = win.get_time();
+
+    Circle c1{200.0f, Vec2{300.0f,100.0f}, Color{0.0f}, "karl"};
+    Circle c2{100.0f, Vec2{250.0f,150.0f}, Color{0.0f}, "judith"};
+
+    std::vector<Circle> vec;
+    vec.push_back(c1);
+    vec.push_back(c2);
+
   while (!win.should_close()) {
 
     if (win.get_key(GLFW_KEY_ESCAPE) == GLFW_PRESS) {
@@ -53,43 +62,17 @@ int main(int argc, char* argv[])
     }
 
 
-    Circle c1{200.0f,Vec2{300.0f,100.0f}, Color{0.0f}, "karl"};
-    Circle c2{100.0f,Vec2{250.0f,150.0f}, Color{0.0f}, "judith"};
-    /*
-    Rectangle r1{Vec2{200.0f,100.0f},Vec2{300.6f, 600.1f}, Color{0.0f}};
-    Rectangle r2{Vec2{100.0f, 50.0f},Vec2{250.0f,150.0f}, Color{0.0f}};
-    */
-    
-    c1.draw(win);
-    c2.draw(win);
-    
-
-    //std::set<Circle> sc;
-   
-    //std::vector<Rectangle> vr;
-
-    //sc.insert(c1);
-    //sc.insert(c2);
-
-   std::vector<Circle> vec;
-   vec.push_back(c1);
-   vec.push_back(c2);
-
-   //std::copy(std::begin(sc), std::end(sc), std::begin(vec));
-
     /*Ergänzungen zu Aufgabe 3.4*/
-    //auto s = win.get_time();
-    
+    for (int i = 0; i < vec.size(); ++i) {
+        if(vec[i].getName() == input) {
+            double second_timestamp = win.get_time();
+            //std::cout << second_timestamp - first_timestamp << std::endl;
 
-    Color col{1.0f, 0.0f, 0.0f};
-
-    for (int i; i<vec.size(); ++i) {  
-      if(vec[i].getName() == input) {
-          auto s = win.get_time();
-          while (s < 11) {
-           // vec[i].setColor(col);        
-          }
-      }
+            if ((second_timestamp - first_timestamp) < 11) {
+              vec[i].setColor(Color{1.0f, 0.0f, 0.0f});
+            }
+        }
+        vec[i].draw(win, vec[i].getColor());
     }
 
 
